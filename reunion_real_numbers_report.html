@@ -1,0 +1,326 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); }
+.section { margin-bottom: 2rem; }
+.section-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-tertiary); margin-bottom: 0.75rem; }
+.card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; }
+.metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
+.metric { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.75rem 1rem; }
+.metric-label { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 4px; }
+.metric-val { font-size: 22px; font-weight: 500; color: var(--color-text-primary); }
+.metric-sub { font-size: 11px; color: var(--color-text-tertiary); margin-top: 2px; }
+.row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.row:last-child { border-bottom: none; }
+.row-label { font-size: 13px; color: var(--color-text-secondary); }
+.row-val { font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
+.badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: var(--border-radius-md); margin-left: 6px; }
+.badge-green { background: var(--color-background-success); color: var(--color-text-success); }
+.badge-amber { background: var(--color-background-warning); color: var(--color-text-warning); }
+.badge-red { background: var(--color-background-danger); color: var(--color-text-danger); }
+.badge-blue { background: var(--color-background-info); color: var(--color-text-info); }
+.tip { background: var(--color-background-info); border-left: 3px solid var(--color-border-info); border-radius: 0; padding: 10px 14px; margin-top: 10px; font-size: 13px; color: var(--color-text-info); }
+.house-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.house-opt { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.75rem; }
+.house-opt-name { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+.house-opt-detail { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+.total-bar { background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; margin-top: 1rem; }
+.scenario { display: grid; grid-template-columns: 1fr auto; align-items: start; padding: 10px 0; border-bottom: 0.5px solid var(--color-border-tertiary); gap: 12px; }
+.scenario:last-child { border-bottom: none; }
+.scenario-name { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+.scenario-detail { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; line-height: 1.5; }
+.scenario-total { font-size: 20px; font-weight: 500; color: var(--color-text-primary); white-space: nowrap; }
+.scenario-sub { font-size: 11px; color: var(--color-text-tertiary); text-align: right; }
+.flight-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.flight-table th { font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.06em; text-align: left; padding: 6px 8px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.flight-table td { padding: 8px 8px; border-bottom: 0.5px solid var(--color-border-tertiary); color: var(--color-text-primary); vertical-align: top; }
+.flight-table tr:last-child td { border-bottom: none; }
+.chart-wrap { position: relative; width: 100%; height: 240px; margin: 1rem 0 0.5rem; }
+.legend-row { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: var(--color-text-secondary); margin-bottom: 10px; }
+.legend-item { display: flex; align-items: center; gap: 5px; }
+.legend-dot { width: 10px; height: 10px; border-radius: 2px; }
+.warn-box { background: var(--color-background-warning); border-radius: var(--border-radius-md); padding: 10px 14px; margin-top: 10px; font-size: 13px; color: var(--color-text-warning); }
+h2 { font-size: 18px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 0.25rem; }
+h3 { font-size: 15px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 0.5rem; }
+p.sub { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 1rem; }
+</style>
+
+<div style="padding: 1.5rem 0;">
+
+<div class="section">
+  <div style="display:flex; align-items:baseline; gap:10px; margin-bottom:0.25rem;">
+    <h2>Real cost breakdown</h2>
+    <span class="badge badge-blue">49 people · 3 days · Nov 2026</span>
+  </div>
+  <p class="sub">Sourced from Google Flights, Expedia, KAYAK, Airbnb, VRBO, AFBF, AAA — April 2026</p>
+
+  <div class="metric-grid">
+    <div class="metric">
+      <div class="metric-label">CA travelers</div>
+      <div class="metric-val">21</div>
+      <div class="metric-sub">10 adults · 11 kids</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">FL locals</div>
+      <div class="metric-val">28</div>
+      <div class="metric-sub">17 adults · 11 kids</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">House needed</div>
+      <div class="metric-val">9–11 BR</div>
+      <div class="metric-sub">Sleeps 22–24</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Reunion nights</div>
+      <div class="metric-val">3 nights</div>
+      <div class="metric-sub">Wed Nov 25 – Sat Nov 28</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Lodging — Airbnb / VRBO for 21 CA travelers</div>
+  <div class="card">
+    <h3>What size house do you need?</h3>
+    <p class="sub">21 people sleeping (10 adults + 11 kids). Florida locals sleep at home.</p>
+    <div class="house-grid">
+      <div class="house-opt">
+        <div class="house-opt-name">Option A — One mega house <span class="badge badge-green">Recommended</span></div>
+        <div class="house-opt-detail">9–11 bedroom mansion, sleeps 22–24<br>Private pool · full kitchen · game room<br>Kissimmee or Champions Gate resort<br>Single booking, everyone together</div>
+      </div>
+      <div class="house-opt">
+        <div class="house-opt-name">Option B — Two side-by-side homes</div>
+        <div class="house-opt-detail">Two 5–6 bedroom houses in same resort<br>More flexible for families who want space<br>Windsor Hills or Storey Lake, Kissimmee<br>Two separate bookings required</div>
+      </div>
+    </div>
+    <div class="row">
+      <span class="row-label">Base nightly rate (off-peak)</span>
+      <span class="row-val">$500 – $800 / night</span>
+    </div>
+    <div class="row">
+      <span class="row-label">Thanksgiving week premium</span>
+      <span class="row-val">+30–50% <span class="badge badge-amber">Holiday surge</span></span>
+    </div>
+    <div class="row">
+      <span class="row-label">Thanksgiving week nightly rate</span>
+      <span class="row-val">$750 – $1,100 / night</span>
+    </div>
+    <div class="row">
+      <span class="row-label">3 nights (Wed–Sat)</span>
+      <span class="row-val">$2,250 – $3,300</span>
+    </div>
+    <div class="row">
+      <span class="row-label">Cleaning + service fees (est.)</span>
+      <span class="row-val">$400 – $600</span>
+    </div>
+    <div class="row" style="background:var(--color-background-secondary); margin: 0 -1.25rem; padding: 8px 1.25rem; border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);">
+      <span class="row-label" style="font-weight:500; color:var(--color-text-primary);">Total lodging cost</span>
+      <span class="row-val" style="font-size:18px;">$2,650 – $3,900</span>
+    </div>
+    <div class="row">
+      <span class="row-label">Per CA person (÷ 21)</span>
+      <span class="row-val">$126 – $186 each</span>
+    </div>
+    <div class="tip">Book the house by May–June 2026. Thanksgiving week properties in Kissimmee/Orlando fill 4–6 months out. Look on Airbnb, VRBO, and TopVillas.com for 9–11BR homes.</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Flights — California to Orlando (MCO), all 21 travelers</div>
+  <div class="card">
+    <h3>What flights actually cost around Thanksgiving</h3>
+    <p class="sub">Based on Google Flights, KAYAK, Expedia, Upgraded Points study of 40,000+ flights. Thanksgiving flights average 55% more than normal weeks.</p>
+    <div class="warn-box">Thanksgiving is the most expensive week to fly. The exact day you depart and return makes a $200–$400 difference per person.</div>
+    <div style="margin-top:1rem;">
+    <table class="flight-table">
+      <thead>
+        <tr>
+          <th>Strategy</th>
+          <th>Depart</th>
+          <th>Return</th>
+          <th>Price / person</th>
+          <th>Surge</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Best</strong> — fly early in week<span class="badge badge-green">Do this</span></td>
+          <td>Mon Nov 23</td>
+          <td>Mon Nov 30</td>
+          <td>$250 – $350</td>
+          <td>~3%</td>
+        </tr>
+        <tr>
+          <td>Smart — one day off peak</td>
+          <td>Tue Nov 24</td>
+          <td>Mon Nov 30</td>
+          <td>$350 – $450</td>
+          <td>~88%</td>
+        </tr>
+        <tr>
+          <td>Typical family booking</td>
+          <td>Tue Nov 25</td>
+          <td>Sun Nov 30</td>
+          <td>$500 – $650</td>
+          <td>55% avg</td>
+        </tr>
+        <tr>
+          <td><strong>Worst</strong> — last minute, peak days<span class="badge badge-red">Avoid</span></td>
+          <td>Wed Nov 26</td>
+          <td>Sun Nov 30</td>
+          <td>$650 – $850</td>
+          <td>93–115%</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div style="margin-top:1rem;">
+    <div class="row"><span class="row-label">Airlines with cheapest base fares (LAX→MCO)</span><span class="row-val">Frontier · Spirit · Southwest</span></div>
+    <div class="row"><span class="row-label">Cheapest regular price found (off-peak)</span><span class="row-val">$128 round trip (Frontier)</span></div>
+    <div class="row"><span class="row-label">Average Thanksgiving RT (AAA 2025 data)</span><span class="row-val">$700 domestic avg</span></div>
+    <div class="row"><span class="row-label">Best case — 21 people, Mon-Mon</span><span class="row-val">$250 × 21 = <strong>$5,250 total</strong></span></div>
+    <div class="row"><span class="row-label">Realistic — 21 people, smart timing</span><span class="row-val">$400 × 21 = <strong>$8,400 total</strong></span></div>
+    <div class="row"><span class="row-label">Typical — 21 people, average booking</span><span class="row-val">$550 × 21 = <strong>$11,550 total</strong></span></div>
+    </div>
+    <div class="tip">Book by June 2026. Set Google Flights price alerts now for LAX → MCO Nov 23 and Nov 24. Monday departure = only 3% premium over normal. Wednesday = 93% premium.</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Food — 49 people, 3 full days including Thanksgiving feast</div>
+  <div class="card">
+    <h3>DIY cooking estimate (realistic grocery store prices)</h3>
+    <p class="sub">Based on AFBF 2025 Thanksgiving survey: $55–95 for 10 people. Wells Fargo: $8–9.50/person for feast meal. Scaled to 49 people, 3 days.</p>
+    <div class="row"><span class="row-label">Breakfasts (3 days · $4.50/person/day)</span><span class="row-val">$662</span></div>
+    <div class="row"><span class="row-label">Lunches (3 days · $7/person/day)</span><span class="row-val">$1,029</span></div>
+    <div class="row"><span class="row-label">Thanksgiving feast ($12/person · all 49)</span><span class="row-val">$588</span></div>
+    <div class="row"><span class="row-label">Other dinners (2 nights · $10/person)</span><span class="row-val">$980</span></div>
+    <div class="row"><span class="row-label">Snacks, drinks, juice, soda ($4/person/day)</span><span class="row-val">$588</span></div>
+    <div class="row"><span class="row-label">Paper goods, foil, supplies</span><span class="row-val">$200</span></div>
+    <div class="row" style="background:var(--color-background-secondary); margin:0 -1.25rem; padding:8px 1.25rem; border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);">
+      <span class="row-label" style="font-weight:500;color:var(--color-text-primary);">Food subtotal (no alcohol)</span>
+      <span class="row-val" style="font-size:18px;">$4,047</span>
+    </div>
+    <div class="row"><span class="row-label">Add: beer, wine, spirits (est.)</span><span class="row-val">$600 – $900</span></div>
+    <div class="row"><span class="row-label">Food total range</span><span class="row-val">$4,047 – $4,947</span></div>
+    <div class="row"><span class="row-label">Per person for all 3 days</span><span class="row-val">~$83 – $101/person</span></div>
+    <div class="tip">Aldi and Costco offer the best value for large-group Thanksgiving shopping. A 16-lb frozen turkey averaged $21.50 in 2025 (AFBF). You'll need 4 turkeys for 49 people (~$86 total for birds).</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Grand total — 3 real scenarios</div>
+  <div class="card">
+    <div class="chart-wrap">
+      <canvas id="scenarioChart"></canvas>
+    </div>
+    <div class="legend-row">
+      <div class="legend-item"><div class="legend-dot" style="background:#185FA5;"></div>Lodging</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#3B6D11;"></div>Flights (CA only)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#BA7517;"></div>Food (all 49)</div>
+    </div>
+
+    <div class="scenario">
+      <div>
+        <div class="scenario-name">Best case <span class="badge badge-green">Book now · smart timing</span></div>
+        <div class="scenario-detail">Frontier/Spirit, Mon Nov 23 departure · One 9BR Kissimmee home · Aldi/Costco groceries</div>
+        <div class="scenario-detail" style="margin-top:4px;">Lodging $3,050 · Flights $5,250 (21×$250) · Food $4,047</div>
+      </div>
+      <div>
+        <div class="scenario-total">$12,347</div>
+        <div class="scenario-sub">$478 / CA person<br>$83 / FL person</div>
+      </div>
+    </div>
+    <div class="scenario">
+      <div>
+        <div class="scenario-name">Realistic case <span class="badge badge-amber">Most likely outcome</span></div>
+        <div class="scenario-detail">Southwest/Delta, Tue Nov 24 departure · 9BR Kissimmee with amenities · Normal groceries</div>
+        <div class="scenario-detail" style="margin-top:4px;">Lodging $3,700 · Flights $8,400 (21×$400) · Food $4,547</div>
+      </div>
+      <div>
+        <div class="scenario-total">$16,647</div>
+        <div class="scenario-sub">$669 / CA person<br>$93 / FL person</div>
+      </div>
+    </div>
+    <div class="scenario">
+      <div>
+        <div class="scenario-name">Typical case <span class="badge badge-red">Late booking · peak days</span></div>
+        <div class="scenario-detail">Any airline, Wed/Thu departure, Sun return · Premium rental · full groceries + drinks</div>
+        <div class="scenario-detail" style="margin-top:4px;">Lodging $4,500 · Flights $11,550 (21×$550) · Food $4,947</div>
+      </div>
+      <div>
+        <div class="scenario-total">$20,997</div>
+        <div class="scenario-sub">$865 / CA person<br>$101 / FL person</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">What each CA person actually spends (all-in)</div>
+  <div class="card">
+    <p class="sub">This is the full out-of-pocket for a California traveler — their flights + share of lodging + share of food.</p>
+    <div class="row"><span class="row-label">Best case (Frontier, Mon-Mon, book early)</span><span class="row-val">$250 + $152 + $83 = <strong>$485</strong></span></div>
+    <div class="row"><span class="row-label">Realistic (mainstream airline, smart dates)</span><span class="row-val">$400 + $176 + $93 = <strong>$669</strong></span></div>
+    <div class="row"><span class="row-label">Typical (average booking, average dates)</span><span class="row-val">$550 + $214 + $101 = <strong>$865</strong></span></div>
+    <div class="row"><span class="row-label">FL person all-in (food only, no travel)</span><span class="row-val">$83 – $101</span></div>
+    <div class="tip">The $250–$350 flight window is real — it exists on Monday departures booked 5–6 months early. The Thanksgiving surge data is from actual Google Flights analysis of 40,000+ domestic routes (Upgraded Points, Nov 2025).</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Where to book — real platforms to search</div>
+  <div class="card">
+    <div class="row"><span class="row-label">Airbnb (Kissimmee)</span><span class="row-val">9BR "sleeps 24" homes exist · search now for Nov dates</span></div>
+    <div class="row"><span class="row-label">VRBO (Cape Coral / Kissimmee)</span><span class="row-val">"Sleeps 20" with heated pool · found at vrbo.com/1455721</span></div>
+    <div class="row"><span class="row-label">TopVillas.com</span><span class="row-val">Specializes in 10–23BR Florida mansions · from $67/pp/night</span></div>
+    <div class="row"><span class="row-label">Champions Gate Resort</span><span class="row-val">8–10BR resort homes near Orlando · family reunion friendly</span></div>
+    <div class="row"><span class="row-label">Google Flights</span><span class="row-val">Set price alerts for LAX→MCO, Nov 23 departure</span></div>
+    <div class="row"><span class="row-label">KAYAK + Hopper</span><span class="row-val">Predictive pricing · alerts when fares drop · use both</span></div>
+  </div>
+</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const ctx = document.getElementById('scenarioChart').getContext('2d');
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Best case', 'Realistic', 'Typical'],
+    datasets: [
+      { label: 'Lodging', data: [3050, 3700, 4500], backgroundColor: '#185FA5', borderRadius: 4 },
+      { label: 'Flights (CA)', data: [5250, 8400, 11550], backgroundColor: '#3B6D11', borderRadius: 4 },
+      { label: 'Food', data: [4047, 4547, 4947], backgroundColor: '#BA7517', borderRadius: 4 },
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => ' ' + ctx.dataset.label + ': $' + ctx.raw.toLocaleString()
+        }
+      }
+    },
+    scales: {
+      x: {
+        stacked: true,
+        ticks: { font: { size: 13 }, color: '#888' },
+        grid: { display: false }
+      },
+      y: {
+        stacked: true,
+        ticks: {
+          callback: v => '$' + (v/1000).toFixed(0) + 'K',
+          font: { size: 12 }, color: '#888'
+        },
+        grid: { color: 'rgba(128,128,128,0.12)' }
+      }
+    }
+  }
+});
+</script>
